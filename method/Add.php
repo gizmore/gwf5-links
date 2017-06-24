@@ -20,11 +20,11 @@ final class Links_Add extends GWF_MethodForm
 
 		$form->addField($table->gdoColumn('link_title'));
 		$form->addField($table->gdoColumn('link_url'));
-		if ($module->cfgLinkDescriptions())
+		if ($module->cfgDescriptions())
 		{
 			$form->addField($table->gdoColumn('link_description'));
 		}
-		if ($module->cfgLinkLevels())
+		if ($module->cfgLevels())
 		{
 			$form->addField($table->gdoColumn('link_level'));
 		}
@@ -34,7 +34,12 @@ final class Links_Add extends GWF_MethodForm
 	
 	public function execute()
 	{
-		return Module_Links::instance()->renderTabs()->add($this->renderInfoBox())->add(parent::execute());
+		$response = Module_Links::instance()->renderTabs()->add($this->renderInfoBox());
+		if ($allowed = Module_Links::instance()->cfgAllowed(GWF_User::current()))
+		{
+			$response->add(parent::execute());
+		}
+		return $response;
 	}
 	
 	public function renderInfoBox()

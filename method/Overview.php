@@ -12,6 +12,8 @@ final class Links_Overview extends GWF_MethodQueryTable
 		return array(
 			GDO_Count::make(),
 			$table->gdoColumn('link_url'),
+			$table->gdoColumn('link_title'),
+			$table->gdoColumn('link_url'),
 			GDO_Button::make('visit'),
 		);
 	}
