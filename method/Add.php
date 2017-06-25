@@ -18,6 +18,8 @@ final class Links_Add extends GWF_MethodForm
 		$table = $this->table;
 		$module = Module_Links::instance();
 
+		$form->addField(GDO_Tags::make('tags'));
+		$form->addField($table->gdoColumn('link_lang'));
 		$form->addField($table->gdoColumn('link_title'));
 		$form->addField($table->gdoColumn('link_url'));
 		if ($module->cfgDescriptions())
@@ -50,6 +52,8 @@ final class Links_Add extends GWF_MethodForm
 	public function formValidated(GWF_Form $form)
 	{
 		$link = GWF_Link::blank()->setVars($form->values())->insert();
+		
+		$link->updateTags($form->getField('tags')->getGDOValue());
 		
 		return $this->message('msg_link_added')->add($this->execMethod('Overview'));
 	}
