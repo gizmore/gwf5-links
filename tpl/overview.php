@@ -16,6 +16,7 @@ echo $cloud->render();
 
 # Table
 $table = GDO_Table::make();
+$table->gdo($gdo);
 $table->href(href('Links', 'Overview'));
 $table->addFields($gdo->getGDOColumns(['link_id', 'link_title', 'link_views', 'link_url', 'link_votes', 'link_rating']));
 $table->addField(GDO_VoteSelection::make('link_vote'));
