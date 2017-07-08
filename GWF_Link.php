@@ -7,9 +7,9 @@ final class GWF_Link extends GDO
 	use GWF_TaggedObject;
 	public function gdoTagTable() { return GWF_LinkTag::table(); }
 
-	##############
-	### Voteds ###
-	##############
+	#############
+	### Votes ###
+	#############
 	use GWF_VotedObject;
 	public function gdoVoteTable() { return GWF_LinkVote::table(); }
 	public function gdoVoteMin() { return 1; }
