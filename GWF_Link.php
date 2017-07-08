@@ -14,7 +14,7 @@ final class GWF_Link extends GDO
 	public function gdoVoteTable() { return GWF_LinkVote::table(); }
 	public function gdoVoteMin() { return 1; }
 	public function gdoVoteMax() { return 5; }
-	public function gdoVotesBeforeOutcome() { return 1; }
+	public function gdoVotesBeforeOutcome() { return Module_Links::instance()->cfgVotesBeforeOutcome(); }
 	public function gdoVoteAllowed(GWF_User $user) { return $user->getLevel() >= $this->getLevel(); }
 	
 	###########

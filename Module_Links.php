@@ -16,6 +16,7 @@ final class Module_Links extends GWF_Module
 			GDO_Int::make('link_add_max')->unsigned()->initial('100')->label('link_add_max'),
 			GDO_Level::make('link_add_min_level')->initial('0')->label('link_add_min_level'),
 			GDO_Level::make('link_add_per_level')->initial('0')->label('link_add_per_level'),
+			GDO_Int::make('link_votes_outcome')->unsigned()->initial('1')->label('link_votes_outcome'),
 		);
 	}
 	public function cfgLevels() { return $this->getConfigValue('link_visible_levels'); }
@@ -25,6 +26,7 @@ final class Module_Links extends GWF_Module
 	public function cfgAddMax() { return $this->getConfigValue('link_add_max'); }
 	public function cfgAddMinLevel() { return $this->getConfigValue('link_add_min_level'); }
 	public function cfgAddPerLevel() { return $this->getConfigValue('link_add_per_level'); }
+	public function cfgVotesBeforeOutcome() { return $this->getConfigValue('link_votes_outcome'); }
 	public function cfgAllowed(GWF_User $user)
 	{
 		$added = GWF_Link::table()->countWhere("link_created_by = {$user->getID()} AND link_deleted_at IS NULL");
