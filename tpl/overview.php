@@ -23,5 +23,6 @@ $table->addField(GDO_VoteSelection::make('link_vote'));
 $table->addField(GDO_Button::make('visit'));
 $table->paginateDefault();
 $table->filtered();
+$table->ordered();
 $table->query($query);
 echo $table->render();
