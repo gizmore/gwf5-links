@@ -42,12 +42,26 @@ final class GWF_Link extends GDO
 	##############
 	### Getter ###
 	##############
+	/**
+	 * @return GWF_User
+	 */
+	public function getCreator() { return $this->getValue('link_created_by'); }
+	public function getCreatorID() { return $this->getVar('link_created_by'); }
+	public function getCreated() { return $this->getVar('link_created_at'); }
+	
 	public function getID() { return $this->getVar('link_id'); }
 	public function getURL() { return $this->getVar('link_url'); }
+	public function getTitle() { return $this->getVar('link_title'); }
 	public function getLevel() { return $this->getVar('link_level'); }
+	public function getViews() { return $this->getVar('link_views'); }
 	
 	############
 	### HREF ###
 	############
 	public function href_visit() { return href('Links', 'Visit', '&id='.$this->getID()); }
+	
+	##############
+	### Render ###
+	##############
+	public function renderList() { return GWF_Template::modulePHP('Links', 'listitem/link.php', ['link'=>$this]); }
 }
